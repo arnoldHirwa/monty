@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "monty.h"
 
 /**
@@ -12,7 +11,7 @@
 int handle_cmd(char *buf, stack_l **stack, int line)
 {
 	char *token;
-	char *sep = " \n";
+	char *sep = "\n\t\r ";
 	int n;
 	char *opc;
 	int line_nbr = 0;
@@ -41,14 +40,14 @@ int handle_cmd(char *buf, stack_l **stack, int line)
 					findFx[n].f(stack, line_nbr);
 				} else
 				{
-					dprintf(2, "L%d: usage: push integer\n", line);
+					dprintf(STDOUT_FILENO, "L%d: usage: push integer\n", line);
 					exit(EXIT_FAILURE);
 				}
 			}
 			return (0);
 		}
 	}
-	dprintf(2, "L%d: unknown instruction %s\n", line, token);
+	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n", line, token);
 	exit(EXIT_FAILURE);
 	return (1);
 }

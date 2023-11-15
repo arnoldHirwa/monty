@@ -2,9 +2,14 @@
 #define MONTY_H
 
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
 * @n: integer
@@ -41,5 +46,6 @@ void push(stack_l **, unsigned int);
 void pall(stack_l **, unsigned int);
 void free_dlistint(stack_l *head);
 int _isdigit(char *);
+void fs_close(int status, void *arg);
 
 #endif /*ifndef MONTY_H*/
