@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		dprintf(2, "USAGE: monty file");
+		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -34,5 +34,6 @@ int main(int argc, char **argv)
 	}
 
 	free_dlistint(stack);
+	fclose(fp);
 	return (0);
 }
