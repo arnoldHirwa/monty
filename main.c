@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 	}
 	info.size = 0;
 	info.top = NULL;
+	info.format = STACK_FORMAT;
 	info.fp = fopen(argv[1], "r");
 	if (info.fp == NULL)
 	{

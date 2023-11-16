@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
-* _stack - reverse the stack to the bottom
+* _stack - sets the format to LIFO
 * @stack: A struct of stack to be printed
 * @line_number: The number of lines read so far
 *
@@ -10,30 +10,14 @@
 
 void _stack(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current, *last;
-
-
 	(void)line_number;
 	(void)stack;
-	if (info.size < 2)
-		return;
 
-	current = *stack;
-	last = *stack;
-	while (current->next)
-		current = current->next;
-
-	current->prev->next = NULL;
-	last->prev = current;
-	current->next = last;
-	current->prev = NULL;
-
-	*stack = current;
+	info.format = STACK_FORMAT;
 }
 
-
 /**
-* queue - reverse the stack to the bottom
+* queue - sets the format to FIFO
 * @stack: A struct of stack to be printed
 * @line_number: The number of lines read so far
 *
@@ -42,23 +26,8 @@ void _stack(stack_t **stack, unsigned int line_number)
 
 void queue(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current, *last;
-
-
 	(void)line_number;
 	(void)stack;
-	if (info.size < 2)
-		return;
 
-	current = *stack;
-	last = *stack;
-	while (current->next)
-		current = current->next;
-
-	current->prev->next = NULL;
-	last->prev = current;
-	current->next = last;
-	current->prev = NULL;
-
-	*stack = current;
+	info.format = QUEUE_FORMAT;
 }

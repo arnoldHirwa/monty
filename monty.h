@@ -12,6 +12,9 @@
 #include <ctype.h>
 #include <math.h>
 
+#define STACK_FORMAT 1
+#define QUEUE_FORMAT 0
+
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
 * @n: integer
@@ -32,6 +35,7 @@ typedef struct stack_s
  * @fp: file descriptor of a file to be opened
  * @top: data at the top of stack
  * @size: amount of nodes in the stack
+ * @format: specifies whether we are in LIFO or FIFO
  * Description: use if to keep file descriptors and other
  * global variables.
 */
@@ -40,6 +44,7 @@ typedef struct info_s
 	FILE *fp;
 	stack_t *top;
 	int size;
+	int format;
 } info_t;
 info_t info;
 /**

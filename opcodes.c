@@ -8,7 +8,7 @@
 */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new;
+	stack_t *new, *current;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
@@ -19,12 +19,31 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 
 	new->n = line_number;
-	new->next = *stack;
-	new->prev = NULL;
-	if (*stack != NULL)
-		(*stack)->prev = new;
-	*stack = new;
-	info.top = *stack;
+	if (info.format == STACK_FORMAT)
+	{
+		new->next = *stack;
+		new->prev = NULL;
+		if (*stack != NULL)
+			(*stack)->prev = new;
+		*stack = new;
+		info.top = *stack;
+	} else
+	{
+		new->next = NULL;
+
+		current = *stack;
+		if (current)
+		{
+			while (current->next != NULL)
+				current = current->next;
+			new->prev = current;
+			current->next = new;
+		} else
+		{
+			new->prev = NULL;
+			*stack = new;
+		}
+	}
 	info.size++;
 }
 
