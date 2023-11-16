@@ -74,17 +74,30 @@ size_t num_len(int num)
  * verify_number -  verify is number for push opcode
  * is valid or not
  * @token: token string
+ * @stack: struct of the stack
+ * @line: line number of the command
  * Return: 1 on success, 0 otherwise
  */
-int verify_number(char *token)
+int verify_number(char *token, stack_t **stack, int line)
 {
 	int i = 0;
+	char *sep = "\n\t\r ";
 
-	if (atoi(token) < 0)
-		i++;
-	if ((isdigit(token[i]) && strlen(token) == num_len(atoi(token))) ||
-		(token[0] == '-' && isdigit(token[1])))
-		return (1);
+	token = strtok(NULL, sep);
+	if (token)
+	{
+		if (atoi(token) < 0)
+			i++;
+		if ((isdigit(token[i]) && strlen(token) == num_len(atoi(token))) ||
+			(token[0] == '-' && isdigit(token[1])))
+		{
+			push(stack, atoi(token));
+			return (0);
+		}
+	}
+	fprintf(stderr, "L%d: usage: push integer\n", line);
+	free_dlistint(*stack);
+	exit(EXIT_FAILURE);
 
-	return (0);
+	return (1);
 }

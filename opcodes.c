@@ -125,4 +125,3 @@ void swap(stack_t **stack, unsigned int line_number)
 	info.top->n = info.top->next->n;
 	info.top->next->n = tmp;
 }
-

@@ -11,34 +11,29 @@
 int handle_cmd(char *buf, stack_t **stack, int line)
 {
 	char *token, *sep = "\n\t\r ", *opc;
-	int n, line_nbr = 0;
+	int n;
 
 	instruction_t findFx[] = {
 		{"push", push}, {"pall", pall}, {"pint", pint},
-		{"pop", pop}, {"swap", swap}, {"add", add},
-		{"nop", nop},
+		{"pop", pop}, {"swap", swap}, {"add", add}, {"mod", mod},
+		{"nop", nop}, {"div", _div}, {"sub", sub}, {"mul", mul},
 		{NULL, NULL}
 	};
 	token = strtok(buf, sep);
+	if (token && '#' == token[0])
+	{
+		nop(stack, line);
+		return (0);
+	}
 	for (n = 0; findFx[n].opcode; n++)
 	{
 		opc = findFx[n].opcode;
 		if (strcmp(opc, token) == 0)
 		{
 			if (strcmp(token, "push") == 0)
-			{
-				token = strtok(NULL, sep);
-				if (token && verify_number(token))
-				{
-					line_nbr = atoi(token);
-					findFx[n].f(stack, line_nbr);
-				} else
-				{
-					fprintf(stderr, "L%d: usage: push integer\n", line);
-					free_dlistint(*stack);
-					exit(EXIT_FAILURE);
-				}
-			} else
+				return (verify_number(token, stack, line));
+
+			else
 				findFx[n].f(stack, line);
 			return (0);
 		}

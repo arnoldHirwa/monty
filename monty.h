@@ -64,11 +64,15 @@ void free_dlistint(stack_t *head);
 int _isdigit(char *);
 void fs_close(int status, void *arg);
 size_t num_len(int num);
-int verify_number(char *token);
+int verify_number(char *, stack_t **, int);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **, unsigned int);
 void swap(stack_t **, unsigned int);
 void add(stack_t **, unsigned int);
 void nop(stack_t **, unsigned int);
+void sub(stack_t **, unsigned int);
+void _div(stack_t **, unsigned int);
+void mul(stack_t **, unsigned int);
+void mod(stack_t **, unsigned int);
 
 #endif /*ifndef MONTY_H*/
