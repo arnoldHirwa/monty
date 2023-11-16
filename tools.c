@@ -71,6 +71,28 @@ size_t num_len(int num)
 }
 
 /**
+ * isnumstr - checks if a string is a number
+ *
+ * @str: string to check
+ *
+ * Return: 1 if numeric, 0 otherwise
+ */
+int isnumstr(char *str)
+{
+	if (*str == '-')
+	{
+		str++;
+		if (*str < '0' || *str > '9')
+			return (0);
+		str++;
+	}
+	while (*str != 0)
+		if (*str < '0' || *str++ > '9')
+			return (0);
+	return (1);
+}
+
+/**
  * verify_number -  verify is number for push opcode
  * is valid or not
  * @token: token string
@@ -80,16 +102,12 @@ size_t num_len(int num)
  */
 int verify_number(char *token, stack_t **stack, int line)
 {
-	int i = 0;
 	char *sep = "\n\t\r ";
 
 	token = strtok(NULL, sep);
 	if (token)
 	{
-		if (atoi(token) < 0)
-			i++;
-		if ((isdigit(token[i]) && strlen(token) == num_len(atoi(token))) ||
-			(token[0] == '-' && isdigit(token[1])))
+		if (isnumstr(token))
 		{
 			push(stack, atoi(token));
 			return (0);

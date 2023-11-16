@@ -85,5 +85,6 @@ void rotl(stack_t **, unsigned int);
 void rotr(stack_t **, unsigned int);
 void _stack(stack_t **, unsigned int);
 void queue(stack_t **, unsigned int);
+int isnumstr(char *str);
 
 #endif /*ifndef MONTY_H*/
