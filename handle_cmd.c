@@ -17,6 +17,7 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 	token = strtok(buf, sep);
@@ -26,10 +27,7 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 		opc = findFx[n].opcode;
 		if (strcmp(opc, token) == 0)
 		{
-			if (strcmp(token, "pall") == 0 || strcmp(token, "pint") == 0)
-			{
-				findFx[n].f(stack, line);
-			} else
+			if (strcmp(token, "push") == 0)
 			{
 				token = strtok(NULL, sep);
 				if (token && verify_number(token))
@@ -42,6 +40,9 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 					free_dlistint(*stack);
 					exit(EXIT_FAILURE);
 				}
+			} else
+			{
+				findFx[n].f(stack, line);
 			}
 			return (0);
 		}

@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	info.size = 0;
+	info.top = NULL;
 	info.fp = fopen(argv[1], "r");
 	if (info.fp == NULL)
 	{

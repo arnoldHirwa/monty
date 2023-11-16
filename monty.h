@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <math.h>
 
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -37,7 +38,7 @@ typedef struct stack_s
 typedef struct info_s
 {
 	FILE *fp;
-	int top;
+	stack_t *top;
 	int size;
 } info_t;
 info_t info;
@@ -52,7 +53,7 @@ info_t info;
 typedef struct instruction_s
 {
 		char *opcode;
-		void (*f)(stack_t **stack, unsigned int line_number);
+		void (*f)(stack_t **, unsigned int);
 } instruction_t;
 
 
@@ -65,5 +66,6 @@ void fs_close(int status, void *arg);
 size_t num_len(int num);
 int verify_number(char *token);
 void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **, unsigned int);
 
 #endif /*ifndef MONTY_H*/

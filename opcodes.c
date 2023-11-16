@@ -24,16 +24,16 @@ void push(stack_t **stack, unsigned int line_number)
 	if (*stack != NULL)
 		(*stack)->prev = new;
 	*stack = new;
-	info.top = line_number;
+	info.top = *stack;
 	info.size++;
 }
 
 /**
- * pall - Prints the data stored in stack starting from the top
- * @stack: A struct of stack to be printed
- * @line_number: The number of lines read so far
- *
- * Return: None
+* pall - Prints the data stored in stack starting from the top
+* @stack: A struct of stack to be printed
+* @line_number: The number of lines read so far
+*
+* Return: None
 */
 
 void pall(stack_t **stack, unsigned int line_number)
@@ -51,11 +51,11 @@ void pall(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pint - Prints the data stored on the top of the stack
- * @stack: A struct of stack to be printed
- * @line_number: The number of lines read so far
- *
- * Return: None
+* pint - Prints the data stored on the top of the stack
+* @stack: A struct of stack to be printed
+* @line_number: The number of lines read so far
+*
+* Return: None
 */
 
 void pint(stack_t **stack, unsigned int line_number)
@@ -67,5 +67,33 @@ void pint(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", info.top);
+	printf("%d\n", info.top->n);
+}
+
+
+/**
+* pop - Remove the top item
+* @head: A struct of stack to be printed
+* @line_number: The number of lines read so far
+*
+* Return: None
+*/
+
+void pop(stack_t **head, unsigned int line_number)
+{
+	stack_t *current = *head;
+
+	if (info.size == 0)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+
+	*head = (*head)->next;
+	if (*head != NULL)
+		(*head)->prev = NULL;
+	free(current);
+	info.size--;
+	info.top = *head;
 }
