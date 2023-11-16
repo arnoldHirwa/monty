@@ -10,11 +10,8 @@
 */
 int handle_cmd(char *buf, stack_l **stack, int line)
 {
-	char *token;
-	char *sep = "\n\t\r ";
-	int n;
-	char *opc;
-	int line_nbr = 0;
+	char *token, *sep = "\n\t\r ", *opc;
+	int n, line_nbr = 0;
 
 	instruction_t findFx[] = {
 		{"push", push},
@@ -40,14 +37,16 @@ int handle_cmd(char *buf, stack_l **stack, int line)
 					findFx[n].f(stack, line_nbr);
 				} else
 				{
-					dprintf(STDOUT_FILENO, "L%d: usage: push integer\n", line);
+					fprintf(stderr, "L%d: usage: push integer\n", line);
+					free_dlistint(*stack);
 					exit(EXIT_FAILURE);
 				}
 			}
 			return (0);
 		}
 	}
-	dprintf(STDOUT_FILENO, "L%d: unknown instruction %s\n", line, token);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line, token);
+	free_dlistint(*stack);
 	exit(EXIT_FAILURE);
 	return (1);
 }

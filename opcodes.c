@@ -13,7 +13,8 @@ void push(stack_l **stack, unsigned int line_number)
 	new = malloc(sizeof(stack_l));
 	if (new == NULL)
 	{
-		dprintf(STDOUT_FILENO, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
+		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
 	new->n = line_number;

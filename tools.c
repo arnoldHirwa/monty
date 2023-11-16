@@ -22,6 +22,7 @@ void free_dlistint(stack_l *head)
 		free(head);
 		head = current;
 	}
+	fclose(info.fp);
 }
 
 /**

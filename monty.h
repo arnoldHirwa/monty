@@ -25,7 +25,18 @@ typedef struct stack_s
 		struct stack_s *prev;
 		struct stack_s *next;
 } stack_l;
-
+/**
+ * struct info_s - keep track of global variables
+ * @fp: file descriptor of a file to be opened
+ *
+ * Description: use if to keep file descriptors and other
+ * global variables.
+*/
+typedef struct info_s
+{
+	FILE *fp;
+} info_t;
+info_t info;
 /**
 * struct instruction_s - opcode and its function
 * @opcode: the opcode

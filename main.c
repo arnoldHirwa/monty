@@ -9,34 +9,29 @@
 */
 int main(int argc, char **argv)
 {
-	FILE *fp;
-	char buffer[1024];
+	char buffer[100];
 	stack_l *stack = NULL;
 	int ln = 1;
 
 	if (argc != 2)
 	{
-		dprintf(STDOUT_FILENO, "USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
-	fp = fopen(argv[1], "r");
-	if (fp == NULL)
+	info.fp = fopen(argv[1], "r");
+	if (info.fp == NULL)
 	{
-		dprintf(STDOUT_FILENO, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	on_exit(free_dlistint, stack);
-	on_exit(fs_close, fp);
-
-	for ( ; fgets(buffer, sizeof(buffer), fp) != NULL; ln++)
+	for ( ; fgets(buffer, sizeof(buffer), info.fp) != NULL; ln++)
 	{
 		/* printf("%s", buffer); */
 		handle_cmd(buffer, &stack, ln);
 	}
 
 	free_dlistint(stack);
-	fclose(fp);
 	return (0);
 }
