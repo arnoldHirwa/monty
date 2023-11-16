@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <ctype.h>
 
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -58,5 +59,7 @@ void pall(stack_l **, unsigned int);
 void free_dlistint(stack_l *head);
 int _isdigit(char *);
 void fs_close(int status, void *arg);
+size_t num_len(int num);
+int verify_number(char *token);
 
 #endif /*ifndef MONTY_H*/

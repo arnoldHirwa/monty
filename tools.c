@@ -48,3 +48,43 @@ int _isdigit(char *y)
 
 	return (1);
 }
+
+/**
+ * num_len -  count how many charachter in number
+ * @num: number
+ * Return: the number lentgh
+ */
+size_t num_len(int num)
+{
+	int len = 0;
+
+	if (!num)
+		return (1);
+	if (num <= 0)
+		len++;
+	while (num != 0)
+	{
+		num /= 10;
+		len++;
+	}
+	return (len);
+}
+
+/**
+ * verify_number -  verify is number for push opcode
+ * is valid or not
+ * @token: token string
+ * Return: 1 on success, 0 otherwise
+ */
+int verify_number(char *token)
+{
+	int i = 0;
+
+	if (atoi(token) < 0)
+		i++;
+	if ((isdigit(token[i]) && strlen(token) == num_len(atoi(token))) ||
+		(token[0] == '-' && isdigit(token[1])))
+		return (1);
+
+	return (0);
+}

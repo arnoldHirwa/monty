@@ -31,7 +31,7 @@ int handle_cmd(char *buf, stack_l **stack, int line)
 			} else
 			{
 				token = strtok(NULL, sep);
-				if (_isdigit(token) && token)
+				if (token && verify_number(token))
 				{
 					line_nbr = atoi(token);
 					findFx[n].f(stack, line_nbr);
