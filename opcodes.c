@@ -17,20 +17,13 @@ void push(stack_l **stack, unsigned int line_number)
 		free_dlistint(*stack);
 		exit(EXIT_FAILURE);
 	}
-	new->n = line_number;
-	new->next = NULL;
 
-	if (*stack)
-	{
-		while ((*stack)->next != NULL)
-			*stack = (*stack)->next;
-		new->prev = *stack;
-		(*stack)->next = new;
-	} else
-	{
-		new->prev = NULL;
-		*stack = new;
-	}
+	new->n = line_number;
+	new->next = *stack;
+	new->prev = NULL;
+	if (*stack != NULL)
+		(*stack)->prev = new;
+	*stack = new;
 }
 
 /**
@@ -43,11 +36,14 @@ void push(stack_l **stack, unsigned int line_number)
 
 void pall(stack_l **stack, unsigned int line_number __attribute__((unused)))
 {
-	if (*stack)
+	stack_l *current = *stack;
+	int i;
+
+	(void)line_number;
+	for (i = 0; current; i++)
 	{
-		while ((*stack)->next != NULL)
-			*stack = (*stack)->next;
-		for ( ; *stack; *stack = (*stack)->prev)
-			printf("%d\n", (*stack)->n);
+		fprintf(stdout, "%d\n", current->n);
+		current = current->next;
 	}
+	fflush(stdout);
 }
