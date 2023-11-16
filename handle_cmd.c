@@ -14,17 +14,12 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 	int n, line_nbr = 0;
 
 	instruction_t findFx[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
+		{"push", push}, {"pall", pall}, {"pint", pint},
+		{"pop", pop}, {"swap", swap}, {"add", add},
 		{"nop", nop},
 		{NULL, NULL}
 	};
 	token = strtok(buf, sep);
-
 	for (n = 0; findFx[n].opcode; n++)
 	{
 		opc = findFx[n].opcode;
@@ -44,9 +39,7 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 					exit(EXIT_FAILURE);
 				}
 			} else
-			{
 				findFx[n].f(stack, line);
-			}
 			return (0);
 		}
 	}
