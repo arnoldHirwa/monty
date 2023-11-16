@@ -56,7 +56,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	first = info.top->n;
-	if (first <= 255 && first >= 0)
+	if (first <= 127 && first >= 0)
 	{
 		printf("%c\n", (char)first);
 	} else
@@ -94,7 +94,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 		for (; current != NULL; current = current->next)
 		{
 			first = current->n;
-			if (first <= 255 && first > 0)
+			if (first <= 127 && first > 0)
 			{
 				printf("%c", (char)first);
 			} else
