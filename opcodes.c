@@ -24,6 +24,8 @@ void push(stack_t **stack, unsigned int line_number)
 	if (*stack != NULL)
 		(*stack)->prev = new;
 	*stack = new;
+	info.top = line_number;
+	info.size++;
 }
 
 /**
@@ -34,7 +36,7 @@ void push(stack_t **stack, unsigned int line_number)
  * Return: None
 */
 
-void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
 	int i;
@@ -46,4 +48,24 @@ void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 		current = current->next;
 	}
 	fflush(stdout);
+}
+
+/**
+ * pint - Prints the data stored on the top of the stack
+ * @stack: A struct of stack to be printed
+ * @line_number: The number of lines read so far
+ *
+ * Return: None
+*/
+
+void pint(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+	(void)stack;
+	if (info.size == 0)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", info.top);
 }

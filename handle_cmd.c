@@ -16,6 +16,7 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 	instruction_t findFx[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 	token = strtok(buf, sep);
@@ -25,7 +26,7 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 		opc = findFx[n].opcode;
 		if (strcmp(opc, token) == 0)
 		{
-			if (strcmp(token, "pall") == 0)
+			if (strcmp(token, "pall") == 0 || strcmp(token, "pint") == 0)
 			{
 				findFx[n].f(stack, line);
 			} else

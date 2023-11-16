@@ -29,13 +29,16 @@ typedef struct stack_s
 /**
  * struct info_s - keep track of global variables
  * @fp: file descriptor of a file to be opened
- *
+ * @top: data at the top of stack
+ * @size: amount of nodes in the stack
  * Description: use if to keep file descriptors and other
  * global variables.
 */
 typedef struct info_s
 {
 	FILE *fp;
+	int top;
+	int size;
 } info_t;
 info_t info;
 /**
@@ -61,5 +64,6 @@ int _isdigit(char *);
 void fs_close(int status, void *arg);
 size_t num_len(int num);
 int verify_number(char *token);
+void pint(stack_t **stack, unsigned int line_number);
 
 #endif /*ifndef MONTY_H*/
