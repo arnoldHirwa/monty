@@ -14,9 +14,11 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 	int n;
 
 	instruction_t findFx[] = {
-		{"push", push}, {"pall", pall}, {"pint", pint},
+		{"push", push}, {"pall", pall}, {"pint", pint}, {"pchar", pchar},
 		{"pop", pop}, {"swap", swap}, {"add", add}, {"mod", mod},
 		{"nop", nop}, {"div", _div}, {"sub", sub}, {"mul", mul},
+		{"pstr", pstr}, {"rotl", rotl}, {"rotr", rotr}, {"stack", _stack},
+		{"queue", queue},
 		{NULL, NULL}
 	};
 	token = strtok(buf, sep);
