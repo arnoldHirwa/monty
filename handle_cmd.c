@@ -18,6 +18,9 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
 		{NULL, NULL}
 	};
 	token = strtok(buf, sep);

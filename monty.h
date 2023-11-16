@@ -67,5 +67,8 @@ size_t num_len(int num);
 int verify_number(char *token);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **, unsigned int);
+void swap(stack_t **, unsigned int);
+void add(stack_t **, unsigned int);
+void nop(stack_t **, unsigned int);
 
 #endif /*ifndef MONTY_H*/
