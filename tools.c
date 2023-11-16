@@ -6,9 +6,9 @@
 *
 * Return: None
 */
-void free_dlistint(stack_l *head)
+void free_dlistint(stack_t *head)
 {
-	stack_l *current = head;
+	stack_t *current = head;
 
 	if (head)
 	{

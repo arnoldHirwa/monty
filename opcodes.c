@@ -6,11 +6,11 @@
 *
 * Return: None
 */
-void push(stack_l **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
-	stack_l *new;
+	stack_t *new;
 
-	new = malloc(sizeof(stack_l));
+	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -34,9 +34,9 @@ void push(stack_l **stack, unsigned int line_number)
  * Return: None
 */
 
-void pall(stack_l **stack, unsigned int line_number __attribute__((unused)))
+void pall(stack_t **stack, unsigned int line_number __attribute__((unused)))
 {
-	stack_l *current = *stack;
+	stack_t *current = *stack;
 	int i;
 
 	(void)line_number;

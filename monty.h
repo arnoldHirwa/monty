@@ -25,7 +25,7 @@ typedef struct stack_s
 		int n;
 		struct stack_s *prev;
 		struct stack_s *next;
-} stack_l;
+} stack_t;
 /**
  * struct info_s - keep track of global variables
  * @fp: file descriptor of a file to be opened
@@ -49,14 +49,14 @@ info_t info;
 typedef struct instruction_s
 {
 		char *opcode;
-		void (*f)(stack_l **stack, unsigned int line_number);
+		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 
-int handle_cmd(char *, stack_l **, int ln);
-void push(stack_l **, unsigned int);
-void pall(stack_l **, unsigned int);
-void free_dlistint(stack_l *head);
+int handle_cmd(char *, stack_t **, int ln);
+void push(stack_t **, unsigned int);
+void pall(stack_t **, unsigned int);
+void free_dlistint(stack_t *head);
 int _isdigit(char *);
 void fs_close(int status, void *arg);
 size_t num_len(int num);

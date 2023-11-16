@@ -10,7 +10,7 @@
 int main(int argc, char **argv)
 {
 	char buffer[100];
-	stack_l *stack = NULL;
+	stack_t *stack = NULL;
 	int ln = 1;
 
 	if (argc != 2)

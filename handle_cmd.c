@@ -8,7 +8,7 @@
 *
 * Return: 0 on success, 1 on failure
 */
-int handle_cmd(char *buf, stack_l **stack, int line)
+int handle_cmd(char *buf, stack_t **stack, int line)
 {
 	char *token, *sep = "\n\t\r ", *opc;
 	int n, line_nbr = 0;
