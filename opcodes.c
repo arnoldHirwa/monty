@@ -29,13 +29,13 @@ void push(stack_t **stack, unsigned int line_number)
 		info.top = *stack;
 	} else if (info.format == STACK_FORMAT)
 	{
-		new->next = info.top;
-		info.top->prev = new;
+		new->next = *stack;
+		(*stack)->prev = new;
 		*stack = new;
-		info.top = new;
+		info.top = *stack;
 	} else
 	{
-		current = info.top;
+		current = *stack;
 		while (current->next)
 			current = current->next;
 		new->prev = current;
