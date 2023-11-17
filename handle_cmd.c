@@ -22,7 +22,7 @@ int handle_cmd(char *buf, stack_t **stack, int line)
 		{NULL, NULL}
 	};
 	token = strtok(buf, sep);
-	if (token && '#' == token[0])
+	if (!token || (token && '#' == token[0]))
 	{
 		nop(stack, line);
 		return (0);
