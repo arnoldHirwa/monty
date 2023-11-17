@@ -105,13 +105,10 @@ int verify_number(char *token, stack_t **stack, int line)
 	char *sep = "\n\t\r ";
 
 	token = strtok(NULL, sep);
-	if (token)
+	if (token && isnumstr(token))
 	{
-		if (isnumstr(token))
-		{
-			push(stack, atoi(token));
-			return (0);
-		}
+		push(stack, atoi(token));
+		return (0);
 	}
 	fprintf(stderr, "L%d: usage: push integer\n", line);
 	free_dlistint(*stack);
